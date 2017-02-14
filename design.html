@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-02-14 Tue 10:27 -->
+<!-- 2017-02-14 Tue 11:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OMP-License设计文档</title>
@@ -233,102 +233,102 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf3ecc1a">1. 总述</a></li>
-<li><a href="#org6ae26e7">2. 系统划分</a></li>
-<li><a href="#org52e7af0">3. 授权文件结构图</a></li>
-<li><a href="#org9d9a659">4. 授权过程流程图</a></li>
-<li><a href="#orgc478f4c">5. 客户信息采集程序</a>
+<li><a href="#org9f8992a">1. 总述</a></li>
+<li><a href="#orgd2de0ed">2. 系统划分</a></li>
+<li><a href="#orgd5e96a3">3. 授权文件结构图</a></li>
+<li><a href="#org89e9a6d">4. 授权过程流程图</a></li>
+<li><a href="#org428ae4a">5. 客户信息采集程序</a>
 <ul>
-<li><a href="#org9caab9c">5.1. 用途 &amp; 功能</a></li>
-<li><a href="#org1c65236">5.2. 使用方式</a></li>
-<li><a href="#org7896d81">5.3. dev_info</a>
+<li><a href="#org6f9167b">5.1. 用途 &amp; 功能</a></li>
+<li><a href="#org952980a">5.2. 使用方式</a></li>
+<li><a href="#orga913914">5.3. dev_info</a>
 <ul>
-<li><a href="#org656a968">5.3.1. 图1</a></li>
-<li><a href="#org9ecdc67">5.3.2. 图1说明</a></li>
+<li><a href="#org20a5001">5.3.1. 图1</a></li>
+<li><a href="#orgf265da5">5.3.2. 图1说明</a></li>
 </ul>
 </li>
-<li><a href="#org4a7dc35">5.4. 加解密方式说明</a>
+<li><a href="#orgac3e23f">5.4. 加解密方式说明</a>
 <ul>
-<li><a href="#orgebbd6b0">5.4.1. 秘钥<sub>1</sub></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org609cc6b">6. 授权文件制作及客户信息管理平台</a>
-<ul>
-<li><a href="#org7ba4308">6.1. 功能</a></li>
-<li><a href="#orgeeda869">6.2. 流程</a></li>
-<li><a href="#org1769d36">6.3. 客户信息搜集与管理</a></li>
-<li><a href="#org30b5fa1">6.4. 客户信息表</a></li>
-<li><a href="#org4d5e871">6.5. license文件</a>
-<ul>
-<li><a href="#org775413f">6.5.1. 功能</a></li>
-<li><a href="#org966a1dc">6.5.2. 描述</a></li>
-<li><a href="#org06ff2a6">6.5.3. 生成过程</a></li>
-<li><a href="#org7b233dd">6.5.4. license文件加解密</a></li>
-<li><a href="#orgf7728d1">6.5.5. 秘钥<sub>2</sub></a></li>
-<li><a href="#orge717a54">6.5.6. OMP配置信息</a></li>
-</ul>
-</li>
-<li><a href="#orgdfefe01">6.6. license包</a>
-<ul>
-<li><a href="#orgdcb0f18">6.6.1. 功能</a></li>
-<li><a href="#orgffc2c99">6.6.2. 组成</a></li>
-<li><a href="#orga956f6a">6.6.3. license包加解密</a></li>
-<li><a href="#orgd67a55f">6.6.4. 秘钥<sub>3</sub></a></li>
-</ul>
-</li>
-<li><a href="#org9281981">6.7. 授权文件</a></li>
-</ul>
-</li>
-<li><a href="#org2de1f86">7. license文件解密程序</a>
-<ul>
-<li><a href="#org0262077">7.1. 功能</a></li>
-<li><a href="#orgd46a24b">7.2. 生成</a></li>
-<li><a href="#org28f96fc">7.3. 解密过程及秘钥</a></li>
-<li><a href="#org2f53575">7.4. 接口so库简述</a>
-<ul>
-<li><a href="#org7225aa6">7.4.1. 设计方案一：共享内存</a></li>
-<li><a href="#org1de1507">7.4.2. 设计方案二：so库</a></li>
+<li><a href="#org702ab86">5.4.1. 秘钥<sub>1</sub></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgdf635b0">8. license包解密程序</a>
+<li><a href="#orgb3882f2">6. 授权文件制作及客户信息管理平台</a>
 <ul>
-<li><a href="#org1af41a4">8.1. 生成</a></li>
-<li><a href="#orgee9e529">8.2. 功能</a></li>
-<li><a href="#org0dc924b">8.3. 解密秘钥</a></li>
+<li><a href="#org1809bed">6.1. 功能</a></li>
+<li><a href="#orgcd89b9c">6.2. 流程</a></li>
+<li><a href="#orgd645ae6">6.3. 客户信息搜集与管理</a></li>
+<li><a href="#org5cd85e5">6.4. 客户信息表</a></li>
+<li><a href="#org2fff49a">6.5. license文件</a>
+<ul>
+<li><a href="#orgcbc0700">6.5.1. 功能</a></li>
+<li><a href="#org41ed1e5">6.5.2. 描述</a></li>
+<li><a href="#org559144c">6.5.3. 生成过程</a></li>
+<li><a href="#orgb094914">6.5.4. license文件加解密</a></li>
+<li><a href="#orgaa82baa">6.5.5. 秘钥<sub>2</sub></a></li>
+<li><a href="#org9b5f62f">6.5.6. OMP配置信息</a></li>
 </ul>
 </li>
-<li><a href="#org98d2bff">9. 破坏场景及分析</a>
+<li><a href="#org847d4f6">6.6. license包</a>
 <ul>
-<li><a href="#org8fac4a5">9.1. 场景</a>
+<li><a href="#orgff33048">6.6.1. 功能</a></li>
+<li><a href="#org9f0aeb0">6.6.2. 组成</a></li>
+<li><a href="#org754a351">6.6.3. license包加解密</a></li>
+<li><a href="#orgdf5727c">6.6.4. 秘钥<sub>3</sub></a></li>
+</ul>
+</li>
+<li><a href="#org475056a">6.7. 授权文件</a></li>
+</ul>
+</li>
+<li><a href="#org48ad525">7. license文件解密程序</a>
 <ul>
-<li><a href="#org8464e16">9.1.1. 场景一</a></li>
-<li><a href="#orga063a1f">9.1.2. 场景二</a></li>
-<li><a href="#org4f5dab2">9.1.3. 场景三</a></li>
+<li><a href="#org05e44ee">7.1. 功能</a></li>
+<li><a href="#orgcbcda58">7.2. 生成</a></li>
+<li><a href="#org02584c6">7.3. 解密过程及秘钥</a></li>
+<li><a href="#org8d83963">7.4. 接口so库简述</a>
+<ul>
+<li><a href="#org4746d1a">7.4.1. 设计方案一：共享内存</a></li>
+<li><a href="#org24d6fa6">7.4.2. 设计方案二：so库</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6c27082">10. 加密方式技术细节阐述</a>
+<li><a href="#org9abf7bd">8. license包解密程序</a>
 <ul>
-<li><a href="#org7734766">10.1. AES-256-CTR</a></li>
-<li><a href="#orgca27aed">10.2. 数字签名</a></li>
-<li><a href="#org4d4209f">10.3. RSA</a></li>
+<li><a href="#org0590fc9">8.1. 生成</a></li>
+<li><a href="#org006cd18">8.2. 功能</a></li>
+<li><a href="#org6fad54f">8.3. 解密秘钥</a></li>
 </ul>
 </li>
-<li><a href="#org4a75bcf">11. 软件加壳</a>
+<li><a href="#orgfbba515">9. 破坏场景及分析</a>
 <ul>
-<li><a href="#orgff83d68">11.1. 目的</a></li>
-<li><a href="#orgc2bb084">11.2. 加壳方式</a></li>
+<li><a href="#org30f74ff">9.1. 场景</a>
+<ul>
+<li><a href="#orgf6a3861">9.1.1. 场景一</a></li>
+<li><a href="#orgaf1d07f">9.1.2. 场景二</a></li>
+<li><a href="#orgc9b0153">9.1.3. 场景三</a></li>
 </ul>
 </li>
-<li><a href="#org63eaa48">12. 硬件校验</a>
+</ul>
+</li>
+<li><a href="#org99088c2">10. 加密方式技术细节阐述</a>
 <ul>
-<li><a href="#orgae1695b">12.1. 作用</a></li>
-<li><a href="#org342cc8e">12.2. 实现方式</a></li>
+<li><a href="#org74aa265">10.1. AES-256-CTR</a></li>
+<li><a href="#orgb118d17">10.2. 数字签名</a></li>
+<li><a href="#org69dffc6">10.3. RSA</a></li>
+</ul>
+</li>
+<li><a href="#orgeac36d3">11. 软件加壳</a>
+<ul>
+<li><a href="#org2cd25ee">11.1. 目的</a></li>
+<li><a href="#orgba3cb55">11.2. 加壳方式</a></li>
+</ul>
+</li>
+<li><a href="#org18b4ac8">12. 硬件校验</a>
+<ul>
+<li><a href="#orgb4e3a9a">12.1. 作用</a></li>
+<li><a href="#orgac86fdb">12.2. 实现方式</a></li>
 </ul>
 </li>
 </ul>
@@ -337,24 +337,24 @@ for the JavaScript code in this tag.
 
 
 
-<div id="outline-container-orgf3ecc1a" class="outline-2">
-<h2 id="orgf3ecc1a"><span class="section-number-2">1</span> 总述</h2>
+<div id="outline-container-org9f8992a" class="outline-2">
+<h2 id="org9f8992a"><span class="section-number-2">1</span> 总述</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 OMP-License系统是:客户信息采集管理，客户授权文件制作及发布，客户授权管理及监控的综合系统。其核心功能是为客户机制作授权文件。其安全性将是系统的关键所在。同时，作为一个授权文件的管理平台，客户信息的管理。也是本系统需要完成的功能。
 </p>
 </div>
 </div>
-<div id="outline-container-org6ae26e7" class="outline-2">
-<h2 id="org6ae26e7"><span class="section-number-2">2</span> 系统划分</h2>
+<div id="outline-container-orgd2de0ed" class="outline-2">
+<h2 id="orgd2de0ed"><span class="section-number-2">2</span> 系统划分</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-系统划分成以下几块:<a href="#orgc478f4c">客户信息采集程序</a>,<a href="#org609cc6b">授权文件制作及客户信息管理平台</a>,<a href="#org2de1f86">license文件解密程序</a>,<a href="#orgdf635b0">license包解密程序</a>。
+系统划分成以下几块:<a href="#org428ae4a">客户信息采集程序</a>,<a href="#orgb3882f2">授权文件制作及客户信息管理平台</a>,<a href="#org48ad525">license文件解密程序</a>,<a href="#org9abf7bd">license包解密程序</a>。
 </p>
 </div>
 </div>
-<div id="outline-container-org52e7af0" class="outline-2">
-<h2 id="org52e7af0"><span class="section-number-2">3</span> 授权文件结构图</h2>
+<div id="outline-container-orgd5e96a3" class="outline-2">
+<h2 id="orgd5e96a3"><span class="section-number-2">3</span> 授权文件结构图</h2>
 <div class="outline-text-2" id="text-3">
 
 <div class="figure">
@@ -363,8 +363,8 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-org9d9a659" class="outline-2">
-<h2 id="org9d9a659"><span class="section-number-2">4</span> 授权过程流程图</h2>
+<div id="outline-container-org89e9a6d" class="outline-2">
+<h2 id="org89e9a6d"><span class="section-number-2">4</span> 授权过程流程图</h2>
 <div class="outline-text-2" id="text-4">
 
 <div class="figure">
@@ -373,34 +373,34 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc478f4c" class="outline-2">
-<h2 id="orgc478f4c"><span class="section-number-2">5</span> 客户信息采集程序</h2>
+<div id="outline-container-org428ae4a" class="outline-2">
+<h2 id="org428ae4a"><span class="section-number-2">5</span> 客户信息采集程序</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-org9caab9c" class="outline-3">
-<h3 id="org9caab9c"><span class="section-number-3">5.1</span> 用途 &amp; 功能</h3>
+</div><div id="outline-container-org6f9167b" class="outline-3">
+<h3 id="org6f9167b"><span class="section-number-3">5.1</span> 用途 &amp; 功能</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
-从客户机上获取硬件信息，加密后保存到文件<a href="#org7896d81">dev_info</a>当中，发还给伟乐。
+从客户机上获取硬件信息，加密后保存到文件<a href="#orga913914">dev_info</a>当中，发还给伟乐。
 </p>
 </div>
 </div>
-<div id="outline-container-org1c65236" class="outline-3">
-<h3 id="org1c65236"><span class="section-number-3">5.2</span> 使用方式</h3>
+<div id="outline-container-org952980a" class="outline-3">
+<h3 id="org952980a"><span class="section-number-3">5.2</span> 使用方式</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
-在客户机上运行该<a href="#orgc478f4c">程序</a>，<a href="#orgc478f4c">程序</a>会生成文件<a href="#org7896d81">dev_info</a>。
+在客户机上运行该<a href="#org428ae4a">程序</a>，<a href="#org428ae4a">程序</a>会生成文件<a href="#orga913914">dev_info</a>。
 </p>
 </div>
 </div>
-<div id="outline-container-org7896d81" class="outline-3">
-<h3 id="org7896d81"><span class="section-number-3">5.3</span> dev_info</h3>
+<div id="outline-container-orga913914" class="outline-3">
+<h3 id="orga913914"><span class="section-number-3">5.3</span> dev_info</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
-解密后的dev_info如下<a href="#org656a968">图1</a>所示，记录了客户机硬件信息。
+解密后的dev_info如下<a href="#org20a5001">图1</a>所示，记录了客户机硬件信息。
 </p>
 </div>
-<div id="outline-container-org656a968" class="outline-4">
-<h4 id="org656a968"><span class="section-number-4">5.3.1</span> 图1</h4>
+<div id="outline-container-org20a5001" class="outline-4">
+<h4 id="org20a5001"><span class="section-number-4">5.3.1</span> 图1</h4>
 <div class="outline-text-4" id="text-5-3-1">
 
 <div class="figure">
@@ -409,8 +409,8 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-org9ecdc67" class="outline-4">
-<h4 id="org9ecdc67"><span class="section-number-4">5.3.2</span> <a href="#org656a968">图1</a>说明</h4>
+<div id="outline-container-orgf265da5" class="outline-4">
+<h4 id="orgf265da5"><span class="section-number-4">5.3.2</span> <a href="#org20a5001">图1</a>说明</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <ul class="org-ul">
 <li>DISKSN:硬盘序列号</li>
@@ -420,19 +420,19 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-org4a7dc35" class="outline-3">
-<h3 id="org4a7dc35"><span class="section-number-3">5.4</span> 加解密方式说明</h3>
+<div id="outline-container-orgac3e23f" class="outline-3">
+<h3 id="orgac3e23f"><span class="section-number-3">5.4</span> 加解密方式说明</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
-采用<a href="#org7734766">AES-256-CTR</a>对称加密,<a href="#orgebbd6b0">秘钥<sub>1</sub></a>写死在该<a href="#orgc478f4c">程序</a>当中。同时<a href="#org609cc6b">授权文件制作及客户信息管理平台</a>的解密模块也会写死该<a href="#orgebbd6b0">秘钥<sub>1</sub></a>。这样<a href="#orgebbd6b0">秘钥<sub>1</sub></a>就作为一种约定写死在加解密两端，而不会出现任何明文的<a href="#orgebbd6b0">秘钥<sub>1</sub></a>信息。 
+采用<a href="#org74aa265">AES-256-CTR</a>对称加密,<a href="#org702ab86">秘钥<sub>1</sub></a>写死在该<a href="#org428ae4a">程序</a>当中。同时<a href="#orgb3882f2">授权文件制作及客户信息管理平台</a>的解密模块也会写死该<a href="#org702ab86">秘钥<sub>1</sub></a>。这样<a href="#org702ab86">秘钥<sub>1</sub></a>就作为一种约定写死在加解密两端，而不会出现任何明文的<a href="#org702ab86">秘钥<sub>1</sub></a>信息。 
 </p>
 
 <p>
-客户硬件信息需要加密保存在文件<a href="#org7896d81">dev_info</a>当中的原因在于：之后的授权文件需要用该信息来制作。因此需要对客户进行保密，不能让其知道授权文件与客户机硬件绑定的具体细节(客户不知道到底与哪个硬件信息绑定)。具体用途会在之后的模块当中介绍。
+客户硬件信息需要加密保存在文件<a href="#orga913914">dev_info</a>当中的原因在于：之后的授权文件需要用该信息来制作。因此需要对客户进行保密，不能让其知道授权文件与客户机硬件绑定的具体细节(客户不知道到底与哪个硬件信息绑定)。具体用途会在之后的模块当中介绍。
 </p>
 </div>
-<div id="outline-container-orgebbd6b0" class="outline-4">
-<h4 id="orgebbd6b0"><span class="section-number-4">5.4.1</span> 秘钥<sub>1</sub></h4>
+<div id="outline-container-org702ab86" class="outline-4">
+<h4 id="org702ab86"><span class="section-number-4">5.4.1</span> 秘钥<sub>1</sub></h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 1234567890
@@ -441,38 +441,38 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-org609cc6b" class="outline-2">
-<h2 id="org609cc6b"><span class="section-number-2">6</span> 授权文件制作及客户信息管理平台</h2>
+<div id="outline-container-orgb3882f2" class="outline-2">
+<h2 id="orgb3882f2"><span class="section-number-2">6</span> 授权文件制作及客户信息管理平台</h2>
 <div class="outline-text-2" id="text-6">
-</div><div id="outline-container-org7ba4308" class="outline-3">
-<h3 id="org7ba4308"><span class="section-number-3">6.1</span> 功能</h3>
+</div><div id="outline-container-org1809bed" class="outline-3">
+<h3 id="org1809bed"><span class="section-number-3">6.1</span> 功能</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 收集管理客户信息，制作授权文件
 </p>
 </div>
 </div>
-<div id="outline-container-orgeeda869" class="outline-3">
-<h3 id="orgeeda869"><span class="section-number-3">6.2</span> 流程</h3>
+<div id="outline-container-orgcd89b9c" class="outline-3">
+<h3 id="orgcd89b9c"><span class="section-number-3">6.2</span> 流程</h3>
 <div class="outline-text-3" id="text-6-2">
 <ol class="org-ol">
 <li>获得客户信息。</li>
-<li>在<a href="#org30b5fa1">客户信息表</a>中，选择客户机，并生成<a href="#org4d5e871">license文件</a>(下文详述)。</li>
-<li>生成<a href="#orgdfefe01">license包</a>(下文详述)。</li>
-<li>生成<a href="#org9281981">授权文件</a>(下文详述)。</li>
+<li>在<a href="#org5cd85e5">客户信息表</a>中，选择客户机，并生成<a href="#org2fff49a">license文件</a>(下文详述)。</li>
+<li>生成<a href="#org847d4f6">license包</a>(下文详述)。</li>
+<li>生成<a href="#org475056a">授权文件</a>(下文详述)。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org1769d36" class="outline-3">
-<h3 id="org1769d36"><span class="section-number-3">6.3</span> 客户信息搜集与管理</h3>
+<div id="outline-container-orgd645ae6" class="outline-3">
+<h3 id="orgd645ae6"><span class="section-number-3">6.3</span> 客户信息搜集与管理</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
-导入从客户机发来的<a href="#org7896d81">dev_info</a>文件，<a href="#org609cc6b">平台</a>用<a href="#orgebbd6b0">秘钥<sub>1</sub></a>解密该文件，从而获得明文的客户机硬件信息，并记录到数据库（<a href="#org30b5fa1">客户信息表</a>）当中。
+导入从客户机发来的<a href="#orga913914">dev_info</a>文件，<a href="#orgb3882f2">平台</a>用<a href="#org702ab86">秘钥<sub>1</sub></a>解密该文件，从而获得明文的客户机硬件信息，并记录到数据库（<a href="#org5cd85e5">客户信息表</a>）当中。
 </p>
 </div>
 </div>
-<div id="outline-container-org30b5fa1" class="outline-3">
-<h3 id="org30b5fa1"><span class="section-number-3">6.4</span> 客户信息表</h3>
+<div id="outline-container-org5cd85e5" class="outline-3">
+<h3 id="org5cd85e5"><span class="section-number-3">6.4</span> 客户信息表</h3>
 <div class="outline-text-3" id="text-6-4">
 
 <div class="figure">
@@ -481,58 +481,58 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-org4d5e871" class="outline-3">
-<h3 id="org4d5e871"><span class="section-number-3">6.5</span> license文件</h3>
+<div id="outline-container-org2fff49a" class="outline-3">
+<h3 id="org2fff49a"><span class="section-number-3">6.5</span> license文件</h3>
 <div class="outline-text-3" id="text-6-5">
-</div><div id="outline-container-org775413f" class="outline-4">
-<h4 id="org775413f"><span class="section-number-4">6.5.1</span> 功能</h4>
+</div><div id="outline-container-orgcbc0700" class="outline-4">
+<h4 id="orgcbc0700"><span class="section-number-4">6.5.1</span> 功能</h4>
 <div class="outline-text-4" id="text-6-5-1">
 <p>
-<a href="#org4d5e871">license文件</a>记录了<a href="#orge717a54">OMP配置信息</a>。OMP系统在运行当中会读取该配置信息，用于配置与运行。是整个OMP系统的运行起点，也是对客户OMP系统功能约束的唯一方式。 
+<a href="#org2fff49a">license文件</a>记录了<a href="#org9b5f62f">OMP配置信息</a>。OMP系统在运行当中会读取该配置信息，用于配置与运行。是整个OMP系统的运行起点，也是对客户OMP系统功能约束的唯一方式。 
 </p>
 </div>
 </div>
-<div id="outline-container-org966a1dc" class="outline-4">
-<h4 id="org966a1dc"><span class="section-number-4">6.5.2</span> 描述</h4>
+<div id="outline-container-org41ed1e5" class="outline-4">
+<h4 id="org41ed1e5"><span class="section-number-4">6.5.2</span> 描述</h4>
 <div class="outline-text-4" id="text-6-5-2">
 <ul class="org-ul">
-<li><a href="#org4d5e871">license文件</a>为加密后的<a href="#orge717a54">OMP配置信息</a>。其加解密采用对称加密+<a href="#orgca27aed">数字签名</a>的两层加密方式。</li>
-<li>第一层，采用<a href="#orgca27aed">数字签名</a>的方式,加密明文的<a href="#orge717a54">OMP配置信息</a>,用来保证OMP系统只能解密运行<a href="#org609cc6b">平台</a>发送来的<a href="#org4d5e871">license文件</a>,而无法运行其他来源的<a href="#org4d5e871">文件</a>。</li>
-<li>第二层，对加密后的<a href="#orge717a54">OMP配置信息</a>,再次使用<a href="#org7734766">AES-256-CTR</a>对称加密，<a href="#orgf7728d1">秘钥<sub>2</sub></a>下面详述</li>
+<li><a href="#org2fff49a">license文件</a>为加密后的<a href="#org9b5f62f">OMP配置信息</a>。其加解密采用对称加密+<a href="#orgb118d17">数字签名</a>的两层加密方式。</li>
+<li>第一层，采用<a href="#orgb118d17">数字签名</a>的方式,加密明文的<a href="#org9b5f62f">OMP配置信息</a>,用来保证OMP系统只能解密运行<a href="#orgb3882f2">平台</a>发送来的<a href="#org2fff49a">license文件</a>,而无法运行其他来源的<a href="#org2fff49a">文件</a>。</li>
+<li>第二层，对加密后的<a href="#org9b5f62f">OMP配置信息</a>,再次使用<a href="#org74aa265">AES-256-CTR</a>对称加密，<a href="#orgaa82baa">秘钥<sub>2</sub></a>下面详述</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org06ff2a6" class="outline-4">
-<h4 id="org06ff2a6"><span class="section-number-4">6.5.3</span> 生成过程</h4>
+<div id="outline-container-org559144c" class="outline-4">
+<h4 id="org559144c"><span class="section-number-4">6.5.3</span> 生成过程</h4>
 <div class="outline-text-4" id="text-6-5-3">
 <ol class="org-ol">
-<li>从<a href="#org30b5fa1">客户信息表</a>中，选取某一条客户机，按功能设定<a href="#orge717a54">OMP配置信息</a>。</li>
-<li>利用<a href="#org4d4209f">RSA</a>生成一对秘钥对，用私钥加密明文的<a href="#orge717a54">OMP配置信息</a>。公钥则编译到<a href="#org2de1f86">license文件解密程序</a>（下文详述)。</li>
-<li>再次客户硬件信息为秘钥加密2.中生成的文件，这样就最终生成了<a href="#org4d5e871">license文件</a>。</li>
+<li>从<a href="#org5cd85e5">客户信息表</a>中，选取某一条客户机，按功能设定<a href="#org9b5f62f">OMP配置信息</a>。</li>
+<li>利用<a href="#org69dffc6">RSA</a>生成一对<a href="#org69dffc6">秘钥对</a>，用<a href="#org69dffc6">私钥</a>加密明文的<a href="#org9b5f62f">OMP配置信息</a>。<a href="#org69dffc6">公钥</a>则编译到<a href="#org48ad525">license文件解密程序</a>（下文详述)。</li>
+<li>再次客户硬件信息为秘钥加密2.中生成的文件，这样就最终生成了<a href="#org2fff49a">license文件</a>。</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org7b233dd" class="outline-4">
-<h4 id="org7b233dd"><span class="section-number-4">6.5.4</span> license文件加解密</h4>
+<div id="outline-container-orgb094914" class="outline-4">
+<h4 id="orgb094914"><span class="section-number-4">6.5.4</span> license文件加解密</h4>
 <div class="outline-text-4" id="text-6-5-4">
 <ul class="org-ul">
-<li>加密方式：<a href="#org7734766">AES-256-CTR</a>对称加密及<a href="#orgca27aed">数字签名</a>的两次加密方式。</li>
-<li><a href="#orgf7728d1">秘钥<sub>2</sub></a>：见下节</li>
-<li>解密方式：利用<a href="#org2de1f86">license文件解密程序</a>(下文详述)来解密<a href="#org4d5e871">license文件</a>。</li>
+<li>加密方式：<a href="#org74aa265">AES-256-CTR</a>对称加密及<a href="#orgb118d17">数字签名</a>的两次加密方式。</li>
+<li><a href="#orgaa82baa">秘钥<sub>2</sub></a>：见下节</li>
+<li>解密方式：利用<a href="#org48ad525">license文件解密程序</a>(下文详述)来解密<a href="#org2fff49a">license文件</a>。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf7728d1" class="outline-4">
-<h4 id="orgf7728d1"><span class="section-number-4">6.5.5</span> 秘钥<sub>2</sub></h4>
+<div id="outline-container-orgaa82baa" class="outline-4">
+<h4 id="orgaa82baa"><span class="section-number-4">6.5.5</span> 秘钥<sub>2</sub></h4>
 <div class="outline-text-4" id="text-6-5-5">
 <ul class="org-ul">
 <li>秘钥采用：客户机硬件信息组合。DISKSN+MAC+CPU。</li>
-<li>当<a href="#org30b5fa1">客户信息表</a>中，选取客户机，制作<a href="#org4d5e871">license文件</a>时，就将表中的硬件信息组合作为秘钥来加密<a href="#orge717a54">OMP配置信息</a>。</li>
+<li>当<a href="#org5cd85e5">客户信息表</a>中，选取客户机，制作<a href="#org2fff49a">license文件</a>时，就将表中的硬件信息组合作为秘钥来加密<a href="#org9b5f62f">OMP配置信息</a>。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge717a54" class="outline-4">
-<h4 id="orge717a54"><span class="section-number-4">6.5.6</span> OMP配置信息</h4>
+<div id="outline-container-org9b5f62f" class="outline-4">
+<h4 id="org9b5f62f"><span class="section-number-4">6.5.6</span> OMP配置信息</h4>
 <div class="outline-text-4" id="text-6-5-6">
 <p>
 见下表
@@ -861,95 +861,95 @@ OMP-License系统是:客户信息采集管理，客户授权文件制作及发�
 </div>
 </div>
 </div>
-<div id="outline-container-orgdfefe01" class="outline-3">
-<h3 id="orgdfefe01"><span class="section-number-3">6.6</span> license包</h3>
+<div id="outline-container-org847d4f6" class="outline-3">
+<h3 id="org847d4f6"><span class="section-number-3">6.6</span> license包</h3>
 <div class="outline-text-3" id="text-6-6">
-</div><div id="outline-container-orgdcb0f18" class="outline-4">
-<h4 id="orgdcb0f18"><span class="section-number-4">6.6.1</span> 功能</h4>
+</div><div id="outline-container-orgff33048" class="outline-4">
+<h4 id="orgff33048"><span class="section-number-4">6.6.1</span> 功能</h4>
 <div class="outline-text-4" id="text-6-6-1">
 <p>
-在第一次为客户机做授权时，将<a href="#org4d5e871">license文件</a>与<a href="#org2de1f86">license文件解密程序</a>拷贝到OMP系统上。并启动运行<a href="#org2de1f86">license文件解密程序</a>来解密<a href="#org4d5e871">license文件</a>
+在第一次为客户机做授权时，将<a href="#org2fff49a">license文件</a>与<a href="#org48ad525">license文件解密程序</a>拷贝到OMP系统上。并启动运行<a href="#org48ad525">license文件解密程序</a>来解密<a href="#org2fff49a">license文件</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgffc2c99" class="outline-4">
-<h4 id="orgffc2c99"><span class="section-number-4">6.6.2</span> 组成</h4>
+<div id="outline-container-org9f0aeb0" class="outline-4">
+<h4 id="org9f0aeb0"><span class="section-number-4">6.6.2</span> 组成</h4>
 <div class="outline-text-4" id="text-6-6-2">
 <p>
-<a href="#orgdfefe01">license包</a>由<a href="#org4d5e871">license文件</a>与<a href="#org2de1f86">license文件解密程序</a>打包后，利用<a href="#orgd67a55f">秘钥<sub>3</sub></a>加密所得。
+<a href="#org847d4f6">license包</a>由<a href="#org2fff49a">license文件</a>与<a href="#org48ad525">license文件解密程序</a>打包后，利用<a href="#orgdf5727c">秘钥<sub>3</sub></a>加密所得。
 </p>
 </div>
 </div>
-<div id="outline-container-orga956f6a" class="outline-4">
-<h4 id="orga956f6a"><span class="section-number-4">6.6.3</span> license包加解密</h4>
+<div id="outline-container-org754a351" class="outline-4">
+<h4 id="org754a351"><span class="section-number-4">6.6.3</span> license包加解密</h4>
 <div class="outline-text-4" id="text-6-6-3">
 <ul class="org-ul">
-<li>加密方式：<a href="#org7734766">AES-256-CTR</a>对称加密。</li>
-<li><a href="#orgd67a55f">秘钥<sub>3</sub></a>：见下节</li>
-<li>解密方式：利用<a href="#orgdf635b0">license包解密程序</a>(下文详述)来解密<a href="#orgdfefe01">license包</a>。</li>
+<li>加密方式：<a href="#org74aa265">AES-256-CTR</a>对称加密。</li>
+<li><a href="#orgdf5727c">秘钥<sub>3</sub></a>：见下节</li>
+<li>解密方式：利用<a href="#org9abf7bd">license包解密程序</a>(下文详述)来解密<a href="#org847d4f6">license包</a>。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd67a55f" class="outline-4">
-<h4 id="orgd67a55f"><span class="section-number-4">6.6.4</span> 秘钥<sub>3</sub></h4>
+<div id="outline-container-orgdf5727c" class="outline-4">
+<h4 id="orgdf5727c"><span class="section-number-4">6.6.4</span> 秘钥<sub>3</sub></h4>
 <div class="outline-text-4" id="text-6-6-4">
 <ul class="org-ul">
 <li>秘钥采用：客户机硬件信息 + 随机数 组合。即DISKSN+MAC+CPU+随机数。</li>
-<li>随机数由<a href="#org609cc6b">平台</a>调用随机数生成函数产生。同时<a href="#org609cc6b">平台</a>会将<a href="#orgd67a55f">秘钥<sub>3</sub></a> <span class="underline">编译</span> 到<a href="#orgdf635b0">license包解密程序</a>当中。</li>
+<li>随机数由<a href="#orgb3882f2">平台</a>调用随机数生成函数产生。同时<a href="#orgb3882f2">平台</a>会将<a href="#orgdf5727c">秘钥<sub>3</sub></a> <span class="underline">编译</span> 到<a href="#org9abf7bd">license包解密程序</a>当中。</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org9281981" class="outline-3">
-<h3 id="org9281981"><span class="section-number-3">6.7</span> 授权文件</h3>
+<div id="outline-container-org475056a" class="outline-3">
+<h3 id="org475056a"><span class="section-number-3">6.7</span> 授权文件</h3>
 <div class="outline-text-3" id="text-6-7">
 <ul class="org-ul">
-<li>授权文件由<a href="#orgdfefe01">license包</a>与<a href="#orgdf635b0">license包解密程序</a>打包而成。</li>
-<li>当客户需要授权时，发该<a href="#org9281981">授权文件</a>给客户</li>
+<li>授权文件由<a href="#org847d4f6">license包</a>与<a href="#org9abf7bd">license包解密程序</a>打包而成。</li>
+<li>当客户需要授权时，发该<a href="#org475056a">授权文件</a>给客户</li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org2de1f86" class="outline-2">
-<h2 id="org2de1f86"><span class="section-number-2">7</span> license文件解密程序</h2>
+<div id="outline-container-org48ad525" class="outline-2">
+<h2 id="org48ad525"><span class="section-number-2">7</span> license文件解密程序</h2>
 <div class="outline-text-2" id="text-7">
-</div><div id="outline-container-org0262077" class="outline-3">
-<h3 id="org0262077"><span class="section-number-3">7.1</span> 功能</h3>
+</div><div id="outline-container-org05e44ee" class="outline-3">
+<h3 id="org05e44ee"><span class="section-number-3">7.1</span> 功能</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
-运行在OMP上，解密<a href="#org4d5e871">license文件</a>。解密后得到<a href="#orge717a54">OMP配置信息</a>。并将配置信息保存在内存当中供OMP系统调用。
+运行在OMP上，解密<a href="#org2fff49a">license文件</a>。解密后得到<a href="#org9b5f62f">OMP配置信息</a>。并将配置信息保存在内存当中供OMP系统调用。
 </p>
 </div>
 </div>
-<div id="outline-container-orgd46a24b" class="outline-3">
-<h3 id="orgd46a24b"><span class="section-number-3">7.2</span> 生成</h3>
+<div id="outline-container-orgcbcda58" class="outline-3">
+<h3 id="orgcbcda58"><span class="section-number-3">7.2</span> 生成</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
-<li><a href="#org2de1f86">license文件解密程序</a>由<a href="#org609cc6b">平台</a>_编译_ 生成。</li>
-<li><a href="#org609cc6b">平台</a>会将第一层加密<a href="#orge717a54">OMP配置信息</a>所生成的公钥，编译到<a href="#org2de1f86">程序</a>当中。</li>
-<li>将<a href="#org2de1f86">程序</a>最终打包到<a href="#orgdfefe01">license包</a>当中。</li>
+<li><a href="#org48ad525">license文件解密程序</a>由<a href="#orgb3882f2">平台</a>_编译_ 生成。</li>
+<li><a href="#orgb3882f2">平台</a>会将第一层加密<a href="#org9b5f62f">OMP配置信息</a>所生成的<a href="#org69dffc6">公钥</a>，编译到<a href="#org48ad525">程序</a>当中。</li>
+<li>将<a href="#org48ad525">程序</a>最终打包到<a href="#org847d4f6">license包</a>当中。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org28f96fc" class="outline-3">
-<h3 id="org28f96fc"><span class="section-number-3">7.3</span> 解密过程及秘钥</h3>
+<div id="outline-container-org02584c6" class="outline-3">
+<h3 id="org02584c6"><span class="section-number-3">7.3</span> 解密过程及秘钥</h3>
 <div class="outline-text-3" id="text-7-3">
 <ul class="org-ul">
-<li>第一层解密：运行该<a href="#org2de1f86">程序</a>后，<a href="#org2de1f86">程序</a>会读取所在客户机硬件信息，同时将其中DISKSN+MAC+CPU的组合，作为<a href="#org4d5e871">license文件</a>的解密秘钥。这样就可以看出如果解密秘钥与<a href="#orgf7728d1">秘钥<sub>2</sub></a>不匹配则无法解密<a href="#org4d5e871">license文件</a>。这样就保证了，特定的<a href="#org4d5e871">license文件</a>只能运行在特定的客户机上，防止出现穿货行为。</li>
-<li>第二层解密：<a href="#org2de1f86">程序</a>会利用内置的公钥来解密上一层生成的文件，最终生成<a href="#orge717a54">OMP配置信息</a>。</li>
-<li><a href="#orge717a54">OMP配置信息</a>会保存在一个结构体当中,并将此结构体与解密函数一起封装在<a href="#org2f53575">接口库</a>当中,供其他进程调用。</li>
+<li>第一层解密：运行该<a href="#org48ad525">程序</a>后，<a href="#org48ad525">程序</a>会读取所在客户机硬件信息，同时将其中DISKSN+MAC+CPU的组合，作为<a href="#org2fff49a">license文件</a>的解密秘钥。这样就可以看出如果解密秘钥与<a href="#orgaa82baa">秘钥<sub>2</sub></a>不匹配则无法解密<a href="#org2fff49a">license文件</a>。这样就保证了，特定的<a href="#org2fff49a">license文件</a>只能运行在特定的客户机上，防止出现穿货行为。</li>
+<li>第二层解密：<a href="#org48ad525">程序</a>会利用内置的<a href="#org69dffc6">公钥</a>来解密上一层生成的文件，最终生成<a href="#org9b5f62f">OMP配置信息</a>。</li>
+<li><a href="#org9b5f62f">OMP配置信息</a>会保存在一个结构体当中,并将此结构体与解密函数一起封装在<a href="#org8d83963">接口库</a>当中,供其他进程调用。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f53575" class="outline-3">
-<h3 id="org2f53575"><span class="section-number-3">7.4</span> 接口so库简述</h3>
+<div id="outline-container-org8d83963" class="outline-3">
+<h3 id="org8d83963"><span class="section-number-3">7.4</span> 接口so库简述</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
-OMP系统当中，有大量的进程，脚本需要用到<a href="#orge717a54">OMP配置信息</a>。因此需要考虑一种机制，使得该<a href="#orge717a54">信息</a>能够被正确读取。
+OMP系统当中，有大量的进程，脚本需要用到<a href="#org9b5f62f">OMP配置信息</a>。因此需要考虑一种机制，使得该<a href="#org9b5f62f">信息</a>能够被正确读取。
 </p>
 </div>
-<div id="outline-container-org7225aa6" class="outline-4">
-<h4 id="org7225aa6"><span class="section-number-4">7.4.1</span> 设计方案一：共享内存</h4>
+<div id="outline-container-org4746d1a" class="outline-4">
+<h4 id="org4746d1a"><span class="section-number-4">7.4.1</span> 设计方案一：共享内存</h4>
 <div class="outline-text-4" id="text-7-4-1">
 <p>
     这种方式广泛应用于进程间通信，保证了高效性。但是其需要额外的考虑进程间访问同步问题，制作维护起来成本
@@ -957,11 +957,11 @@ OMP系统当中，有大量的进程，脚本需要用到<a href="#orge717a54">O
 </p>
 </div>
 </div>
-<div id="outline-container-org1de1507" class="outline-4">
-<h4 id="org1de1507"><span class="section-number-4">7.4.2</span> 设计方案二：so库</h4>
+<div id="outline-container-org24d6fa6" class="outline-4">
+<h4 id="org24d6fa6"><span class="section-number-4">7.4.2</span> 设计方案二：so库</h4>
 <div class="outline-text-4" id="text-7-4-2">
 <p>
-    将解密函数及记录<a href="#orge717a54">配置信息</a>的结构体，都封装在so库当中，其他进程及脚本都调用该so库。即：
+    将解密函数及记录<a href="#org9b5f62f">配置信息</a>的结构体，都封装在so库当中，其他进程及脚本都调用该so库。即：
 每个进程及脚本都要解密并记录一次，这样的方式在当前这种只加载一次参数，不考虑运行效率的情况下，能做到简单易维护
 因此决定采用这种方式。
 </p>
@@ -969,80 +969,80 @@ OMP系统当中，有大量的进程，脚本需要用到<a href="#orge717a54">O
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf635b0" class="outline-2">
-<h2 id="orgdf635b0"><span class="section-number-2">8</span> license包解密程序</h2>
+<div id="outline-container-org9abf7bd" class="outline-2">
+<h2 id="org9abf7bd"><span class="section-number-2">8</span> license包解密程序</h2>
 <div class="outline-text-2" id="text-8">
-</div><div id="outline-container-org1af41a4" class="outline-3">
-<h3 id="org1af41a4"><span class="section-number-3">8.1</span> 生成</h3>
+</div><div id="outline-container-org0590fc9" class="outline-3">
+<h3 id="org0590fc9"><span class="section-number-3">8.1</span> 生成</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
-<li><a href="#orgdf635b0">程序</a>由<a href="#org609cc6b">平台</a> <span class="underline">编译</span> 生成,并将最终打包到<a href="#org9281981">授权文件</a>当中。</li>
+<li><a href="#org9abf7bd">程序</a>由<a href="#orgb3882f2">平台</a> <span class="underline">编译</span> 生成,并将最终打包到<a href="#org475056a">授权文件</a>当中。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgee9e529" class="outline-3">
-<h3 id="orgee9e529"><span class="section-number-3">8.2</span> 功能</h3>
+<div id="outline-container-org006cd18" class="outline-3">
+<h3 id="org006cd18"><span class="section-number-3">8.2</span> 功能</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
-<li><a href="#orgdf635b0">程序</a>运行在客户机上，并获取客户机的硬件信息。</li>
-<li><a href="#orgdf635b0">程序</a>的功能是用来解密<a href="#orgdfefe01">license包</a>。</li>
-<li>并启动<a href="#orgdfefe01">包</a>中的<a href="#org2de1f86">license文件解密程序</a></li>
+<li><a href="#org9abf7bd">程序</a>运行在客户机上，并获取客户机的硬件信息。</li>
+<li><a href="#org9abf7bd">程序</a>的功能是用来解密<a href="#org847d4f6">license包</a>。</li>
+<li>并启动<a href="#org847d4f6">包</a>中的<a href="#org48ad525">license文件解密程序</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0dc924b" class="outline-3">
-<h3 id="org0dc924b"><span class="section-number-3">8.3</span> 解密秘钥</h3>
+<div id="outline-container-org6fad54f" class="outline-3">
+<h3 id="org6fad54f"><span class="section-number-3">8.3</span> 解密秘钥</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
-由上文描述可以知道<a href="#orgdfefe01">license包</a>的加密秘钥（<a href="#orgd67a55f">秘钥<sub>3</sub></a>），是由客户机硬件信息 + 随机数组成。因此解密秘钥也必须是相同客户机上的硬件信息与相同的随机数。照此思路，我们在生成随机数时，将其编译到<a href="#orgdf635b0">程序</a>当中。这样在发布时<a href="#orgdf635b0">程序</a>就已经获得了一半的秘钥。当<a href="#orgdf635b0">程序</a>运行在指定客户机时，获取到客户机硬件信息并与<a href="#orgdf635b0">程序</a>内部保存的随机数进行组合。这样就与加密秘钥（<a href="#orgd67a55f">秘钥<sub>3</sub></a>）一致，从而可以解密<a href="#orgdfefe01">license包</a>。
+由上文描述可以知道<a href="#org847d4f6">license包</a>的加密秘钥（<a href="#orgdf5727c">秘钥<sub>3</sub></a>），是由客户机硬件信息 + 随机数组成。因此解密秘钥也必须是相同客户机上的硬件信息与相同的随机数。照此思路，我们在生成随机数时，将其编译到<a href="#org9abf7bd">程序</a>当中。这样在发布时<a href="#org9abf7bd">程序</a>就已经获得了一半的秘钥。当<a href="#org9abf7bd">程序</a>运行在指定客户机时，获取到客户机硬件信息并与<a href="#org9abf7bd">程序</a>内部保存的随机数进行组合。这样就与加密秘钥（<a href="#orgdf5727c">秘钥<sub>3</sub></a>）一致，从而可以解密<a href="#org847d4f6">license包</a>。
 </p>
 
 <p>
-同时可以看出，每次发布<a href="#org9281981">授权文件</a>时，都需要重新生成随机数，重新编译生成<a href="#orgdf635b0">程序</a>。这样就保证了，即使是为同一台机器制作授权文件，每次用来加密<a href="#orgdfefe01">包</a>及解密<a href="#orgdf635b0">程序</a>所使用的秘钥都不相同。
+同时可以看出，每次发布<a href="#org475056a">授权文件</a>时，都需要重新生成随机数，重新编译生成<a href="#org9abf7bd">程序</a>。这样就保证了，即使是为同一台机器制作授权文件，每次用来加密<a href="#org847d4f6">包</a>及解密<a href="#org9abf7bd">程序</a>所使用的秘钥都不相同。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org98d2bff" class="outline-2">
-<h2 id="org98d2bff"><span class="section-number-2">9</span> 破坏场景及分析</h2>
+<div id="outline-container-orgfbba515" class="outline-2">
+<h2 id="orgfbba515"><span class="section-number-2">9</span> 破坏场景及分析</h2>
 <div class="outline-text-2" id="text-9">
-</div><div id="outline-container-org8fac4a5" class="outline-3">
-<h3 id="org8fac4a5"><span class="section-number-3">9.1</span> 场景</h3>
+</div><div id="outline-container-org30f74ff" class="outline-3">
+<h3 id="org30f74ff"><span class="section-number-3">9.1</span> 场景</h3>
 <div class="outline-text-3" id="text-9-1">
-</div><div id="outline-container-org8464e16" class="outline-4">
-<h4 id="org8464e16"><span class="section-number-4">9.1.1</span> 场景一</h4>
+</div><div id="outline-container-orgf6a3861" class="outline-4">
+<h4 id="orgf6a3861"><span class="section-number-4">9.1.1</span> 场景一</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <ul class="org-ul">
 <li>在制作授权文件过程中，某生产人员盗取秘钥。于是擅自制作授权文件私下给客户进行授权而牟利。</li>
-<li>分析：该人员通过对<a href="#org30b5fa1">客户信息表</a>的观察，可能会猜想到授权文件的秘钥来源为客户的硬件信息。但是由于随机数的存在，针对单一用户的反复的授权文件制作。都会得到不同的加密文件，其破解所需的重现方式无法实现。因此极大的提高了破解难度。</li>
+<li>分析：该人员通过对<a href="#org5cd85e5">客户信息表</a>的观察，可能会猜想到授权文件的秘钥来源为客户的硬件信息。但是由于随机数的存在，针对单一用户的反复的授权文件制作。都会得到不同的加密文件，其破解所需的重现方式无法实现。因此极大的提高了破解难度。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga063a1f" class="outline-4">
-<h4 id="orga063a1f"><span class="section-number-4">9.1.2</span> 场景二</h4>
+<div id="outline-container-orgaf1d07f" class="outline-4">
+<h4 id="orgaf1d07f"><span class="section-number-4">9.1.2</span> 场景二</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <ul class="org-ul">
-<li>在OMP运行当中，客户篡改<a href="#org4d5e871">license文件</a>,对未授权的功能或时间进行授权。造成wellav损失。</li>
-<li>分析：<a href="#org4d5e871">license文件</a>在解密之前，会包含在<a href="#orgdfefe01">license包</a>当中，由于随机数的原因，客户无法自制授权文件。而在解密之后，<a href="#org4d5e871">license文件</a>内容将保持在内存当中，不会出现任何形式的明文<a href="#org4d5e871">文件</a>,因此无法获得其内容。</li>
+<li>在OMP运行当中，客户篡改<a href="#org2fff49a">license文件</a>,对未授权的功能或时间进行授权。造成wellav损失。</li>
+<li>分析：<a href="#org2fff49a">license文件</a>在解密之前，会包含在<a href="#org847d4f6">license包</a>当中，由于随机数的原因，客户无法自制授权文件。而在解密之后，<a href="#org2fff49a">license文件</a>内容将保持在内存当中，不会出现任何形式的明文<a href="#org2fff49a">文件</a>,因此无法获得其内容。</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f5dab2" class="outline-4">
-<h4 id="org4f5dab2"><span class="section-number-4">9.1.3</span> 场景三</h4>
+<div id="outline-container-orgc9b0153" class="outline-4">
+<h4 id="orgc9b0153"><span class="section-number-4">9.1.3</span> 场景三</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <ul class="org-ul">
 <li>黑客破解解密程序，从了解秘钥机制。</li>
-<li>分析：通过<a href="#org4a75bcf">软件加壳</a>的方式，隐藏重要接口函数库及程序。</li>
+<li>分析：通过<a href="#orgeac36d3">软件加壳</a>的方式，隐藏重要接口函数库及程序。</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org6c27082" class="outline-2">
-<h2 id="org6c27082"><span class="section-number-2">10</span> 加密方式技术细节阐述</h2>
+<div id="outline-container-org99088c2" class="outline-2">
+<h2 id="org99088c2"><span class="section-number-2">10</span> 加密方式技术细节阐述</h2>
 <div class="outline-text-2" id="text-10">
-</div><div id="outline-container-org7734766" class="outline-3">
-<h3 id="org7734766"><span class="section-number-3">10.1</span> AES-256-CTR</h3>
+</div><div id="outline-container-org74aa265" class="outline-3">
+<h3 id="org74aa265"><span class="section-number-3">10.1</span> AES-256-CTR</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 OMP-License加密采用对称加密形式，对秘钥的保护就显得尤为重要。
@@ -1071,39 +1071,39 @@ OMP-License加密采用对称加密形式，对秘钥的保护就显得尤为重
 </div>
 </div>
 </div>
-<div id="outline-container-orgca27aed" class="outline-3">
-<h3 id="orgca27aed"><span class="section-number-3">10.2</span> 数字签名</h3>
+<div id="outline-container-orgb118d17" class="outline-3">
+<h3 id="orgb118d17"><span class="section-number-3">10.2</span> 数字签名</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
    数字签名，就是只有信息的发送者才能产生的别人无法伪造的一段数字串，这段数字串同时也是对信息的发送者
 发送信息真实性的一个有效证明。
-   我们借鉴数字签名的方式，使得OMP系统只能解密来自于wellav发出的<a href="#org4d5e871">license文件</a>。从而保证在信息来源的可靠性与
-唯一性。让攻击者，即使知道了<a href="#org4d5e871">license文件</a>的内容，也无法做出适合OMP系统的<a href="#org4d5e871">license文件</a>
+   我们借鉴数字签名的方式，使得OMP系统只能解密来自于wellav发出的<a href="#org2fff49a">license文件</a>。从而保证在信息来源的可靠性与
+唯一性。让攻击者，即使知道了<a href="#org2fff49a">license文件</a>的内容，也无法做出适合OMP系统的<a href="#org2fff49a">license文件</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org4d4209f" class="outline-3">
-<h3 id="org4d4209f"><span class="section-number-3">10.3</span> RSA</h3>
+<div id="outline-container-org69dffc6" class="outline-3">
+<h3 id="org69dffc6"><span class="section-number-3">10.3</span> RSA</h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
-采用RSA非对称加密算法，生成一对秘钥对。用私钥加密，公钥解密来实现<a href="#orgca27aed">数字签名</a>的加密方式。
+采用RSA非对称加密算法，生成一对秘钥对。用私钥加密，公钥解密来实现<a href="#orgb118d17">数字签名</a>的加解密方式。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4a75bcf" class="outline-2">
-<h2 id="org4a75bcf"><span class="section-number-2">11</span> 软件加壳</h2>
+<div id="outline-container-orgeac36d3" class="outline-2">
+<h2 id="orgeac36d3"><span class="section-number-2">11</span> 软件加壳</h2>
 <div class="outline-text-2" id="text-11">
-</div><div id="outline-container-orgff83d68" class="outline-3">
-<h3 id="orgff83d68"><span class="section-number-3">11.1</span> 目的</h3>
+</div><div id="outline-container-org2cd25ee" class="outline-3">
+<h3 id="org2cd25ee"><span class="section-number-3">11.1</span> 目的</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 防止黑客利用反编译的手段，破解软件解密的接口函数库。
 </p>
 </div>
 </div>
-<div id="outline-container-orgc2bb084" class="outline-3">
-<h3 id="orgc2bb084"><span class="section-number-3">11.2</span> 加壳方式</h3>
+<div id="outline-container-orgba3cb55" class="outline-3">
+<h3 id="orgba3cb55"><span class="section-number-3">11.2</span> 加壳方式</h3>
 <div class="outline-text-3" id="text-11-2">
 <p>
 利用upx加壳工具，进行软件加壳。
@@ -1111,22 +1111,22 @@ OMP-License加密采用对称加密形式，对秘钥的保护就显得尤为重
 </div>
 </div>
 </div>
-<div id="outline-container-org63eaa48" class="outline-2">
-<h2 id="org63eaa48"><span class="section-number-2">12</span> 硬件校验</h2>
+<div id="outline-container-org18b4ac8" class="outline-2">
+<h2 id="org18b4ac8"><span class="section-number-2">12</span> 硬件校验</h2>
 <div class="outline-text-2" id="text-12">
-</div><div id="outline-container-orgae1695b" class="outline-3">
-<h3 id="orgae1695b"><span class="section-number-3">12.1</span> 作用</h3>
+</div><div id="outline-container-orgb4e3a9a" class="outline-3">
+<h3 id="orgb4e3a9a"><span class="section-number-3">12.1</span> 作用</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 防止用户私自更换硬件，如硬盘等。
 </p>
 </div>
 </div>
-<div id="outline-container-org342cc8e" class="outline-3">
-<h3 id="org342cc8e"><span class="section-number-3">12.2</span> 实现方式</h3>
+<div id="outline-container-orgac86fdb" class="outline-3">
+<h3 id="orgac86fdb"><span class="section-number-3">12.2</span> 实现方式</h3>
 <div class="outline-text-3" id="text-12-2">
 <ul class="org-ul">
-<li>在生成<a href="#org4d5e871">license文件</a>时，将客户机硬件信息的字符串组合，利用MD5算法转换为固定长度的字符串。保存在<a href="#org4d5e871">license文件</a></li>
+<li>在生成<a href="#org2fff49a">license文件</a>时，将客户机硬件信息的字符串组合，利用MD5算法转换为固定长度的字符串。保存在<a href="#org2fff49a">license文件</a></li>
 </ul>
 <p>
 当中。
@@ -1143,7 +1143,7 @@ OMP-License加密采用对称加密形式，对秘钥的保护就显得尤为重
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Daqian.Peng</p>
-<p class="date">Created: 2017-02-14 Tue 10:27</p>
+<p class="date">Created: 2017-02-14 Tue 11:02</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
