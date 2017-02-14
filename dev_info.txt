@@ -1,0 +1,3 @@
+sn=WD-WMAYUX241341
+MAC=C8:1F:66:C6:94:60
+CPU=xxxxxxx

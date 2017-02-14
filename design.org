@@ -1,0 +1,211 @@
+#+TITLE: OMP-License设计文档
+#+AUTHOR: Daqian.Peng
+#+EMAIL: daqian.peng@wellav.com
+#+OPTIONS: ^:{}
+
+
+
+* 总述
+  OMP-License系统是:客户信息采集管理，客户授权文件制作及发布，客户授权管理及监控的综合系统。其核心功能是为客户机制作授权文件。其安全性将是系统的关键所在。同时，作为一个授权文件的管理平台，客户信息的管理。也是本系统需要完成的功能。
+* 系统划分
+  系统划分成以下几块:[[客户信息采集程序][客户信息采集程序]],[[授权文件制作及客户信息管理平台][授权文件制作及客户信息管理平台]],[[license文件解密程序][license文件解密程序]],[[license包解密程序][license包解密程序]]。
+* 授权文件结构图
+[[file:diagram.png]]
+* 授权过程流程图
+[[file:license_flowchart.png]]
+* 客户信息采集程序
+** 用途 & 功能
+   从客户机上获取硬件信息，加密后保存到文件[[dev_info][dev_info]]当中，发还给伟乐。
+** 使用方式
+   在客户机上运行该[[客户信息采集程序][程序]]，[[客户信息采集程序][程序]]会生成文件[[dev_info][dev_info]]。
+** dev_info
+   解密后的dev_info如下[[图1][图1]]所示，记录了客户机硬件信息。
+*** 图1
+[[file:dev_info.png]]
+*** [[图1][图1]]说明
+   + DISKSN:硬盘序列号
+   + MAC:网卡Mac
+   + CPU:主板型号
+** 加解密方式说明
+   采用[[AES-256-CTR][AES-256-CTR]]对称加密,[[秘钥_{1}][秘钥_{1}]]写死在该[[客户信息采集程序][程序]]当中。同时[[授权文件制作及客户信息管理平台][授权文件制作及客户信息管理平台]]的解密模块也会写死该[[秘钥_{1}][秘钥_{1}]]。这样[[秘钥_{1}][秘钥_{1}]]就作为一种约定写死在加解密两端，而不会出现任何明文的[[秘钥_{1}][秘钥_{1}]]信息。 
+
+   客户硬件信息需要加密保存在文件[[dev_info][dev_info]]当中的原因在于：之后的授权文件需要用该信息来制作。因此需要对客户进行保密，不能让其知道授权文件与客户机硬件绑定的具体细节(客户不知道到底与哪个硬件信息绑定)。具体用途会在之后的模块当中介绍。
+*** 秘钥_{1}
+    1234567890
+* 授权文件制作及客户信息管理平台
+** 功能
+   收集管理客户信息，制作授权文件
+** 流程 
+   1. 获得客户信息。
+   2. 在[[客户信息表][客户信息表]]中，选择客户机，并生成[[license文件][license文件]](下文详述)。
+   3. 生成[[license包][license包]](下文详述)。
+   4. 生成[[授权文件][授权文件]](下文详述)。
+** 客户信息搜集与管理
+   导入从客户机发来的[[dev_info][dev_info]]文件，[[授权文件制作及客户信息管理平台][平台]]用[[秘钥_{1}][秘钥_{1}]]解密该文件，从而获得明文的客户机硬件信息，并记录到数据库（[[客户信息表][客户信息表]]）当中。
+** 客户信息表
+[[file:dev_info_table.png]]
+** license文件
+*** 功能
+   [[license文件][license文件]]记录了[[OMP配置信息][OMP配置信息]]。OMP系统在运行当中会读取该配置信息，用于配置与运行。是整个OMP系统的运行起点，也是对客户OMP系统功能约束的唯一方式。 
+*** 描述
+    + [[license文件][license文件]]为加密后的[[OMP配置信息][OMP配置信息]]。其加解密采用对称加密+[[数字签名][数字签名]]的两层加密方式。
+    + 第一层，采用[[数字签名][数字签名]]的方式,加密明文的[[OMP配置信息][OMP配置信息]],用来保证OMP系统只能解密运行[[授权文件制作及客户信息管理平台][平台]]发送来的[[license文件][license文件]],而无法运行其他来源的[[license文件][文件]]。
+    + 第二层，对加密后的[[OMP配置信息][OMP配置信息]],再次使用[[AES-256-CTR][AES-256-CTR]]对称加密，[[秘钥_{2}][秘钥_{2}]]下面详述
+*** 生成过程
+    1. 从[[客户信息表][客户信息表]]中，选取某一条客户机，按功能设定[[OMP配置信息][OMP配置信息]]。
+    2. 利用[[RSA][RSA]]生成一对秘钥对，用私钥加密明文的[[OMP配置信息][OMP配置信息]]。公钥则编译到[[license文件解密程序][license文件解密程序]]（下文详述)。
+    3. 再次客户硬件信息为秘钥加密2.中生成的文件，这样就最终生成了[[license文件][license文件]]。
+*** license文件加解密
+    + 加密方式：[[AES-256-CTR][AES-256-CTR]]对称加密及[[数字签名][数字签名]]的两次加密方式。
+    + [[秘钥_{2}][秘钥_{2}]]：见下节
+    + 解密方式：利用[[license文件解密程序][license文件解密程序]](下文详述)来解密[[license文件][license文件]]。
+*** 秘钥_{2}
+    + 秘钥采用：客户机硬件信息组合。DISKSN+MAC+CPU。
+    + 当[[客户信息表][客户信息表]]中，选取客户机，制作[[license文件][license文件]]时，就将表中的硬件信息组合作为秘钥来加密[[OMP配置信息][OMP配置信息]]。
+*** OMP配置信息
+   见下表
+ | Item                                    | Option         |
+ |-----------------------------------------+----------------|
+ | PRODUCT_NAME/产品名称                   | e.g. CES3000T  |
+ | PRODUCT_LONG_NAME/产品系列              | e.g. OMP500    |
+ | FEAT_CMMB                               | enable/disable |
+ | FEAT_CMMB_CA                            | enable/disable |
+ | FEAT_MPEG2/MPEG2编解码                  | enable/disable |
+ | FEAT_H264/H264编解码                    | enable/disable |
+ | FEAT_AVS_DECODE/AVS解码                 | enable/disable |
+ | FEAT_AVS_ENCODE/AVS编码                 | enable/disable |
+ | FEAT_DRA/DRA音频                        | enable/disable |
+ | FEAT_HDTV/高清电视                      | enable/disable |
+ | FEAT_SCH_OL/常规字幕叠加                | enable/disable |
+ | FEAT_SCH_AD/常规插播                    | enable/disable |
+ | FEAT_FP_AD                              | enable/disable |
+ | FEAT_FP_12M                             | enable/disable |
+ | FEAT_FP_RPT                             | enable/disable |
+ | FEAT_FP_OL                              | enable/disable |
+ | FEAT_OUTPUT2/转码后多通道输出           | enable/disable |
+ | FEAT_PROXY/多格式转换                   | enable/disable |
+ | FEAT_SDI_MULTIPLE_AUDIO/SDI多路音频     | enable/disable |
+ | FEAT_OFFLINE_ENCODE/离线编码            | enable/disable |
+ | FEAT_OFFLINE_FTP/本地FTP(OMP600)        | enable/disable |
+ | FEAT_AUDIO1TO2                          | enable/disable |
+ | FEAT_DL_REBOOT                          | enable/disable |
+ | FEAT_MULTIPLE_ETHERNET/网口绑定         | enable/disable |
+ | FEAT_ONEWAVE                            | enable/disable |
+ | FEAT_CPU_USED/CPU使用率监控（界面显示） | enable/disable |
+ | FEAT_AUDIO_ENCODE/纯音频编码            | enable/disable |
+ | FEAT_YMC                                | enable/disable |
+ | FEAT_WMV9                               | enable/disable |
+ | FEAT_TEMPLATE                           | enable/disable |
+ | FEAT_MULTIPLE_USER/多用户               | enable/disable |
+ | FEAT_UDP_ROUTER/环出卡                  | enable/disable |
+ | FEAT_OFFLINE_YUC/CS集群                 | enable/disable |
+ | FEAT_LOG_DISK                           | enable/disable |
+ | FEAT_ICLUSTER/CS集群                    | enable/disable |
+ | FEAT_INGEST_BACKUP_MODE/载入备份模式    | enable/disable |
+ | FEAT_VIDEO_QUALITY_MODE/视频质量模式    | enable/disable |
+ | FEAT_MULTIPLE_AUDIO_TRACK/多音轨        | enable/disable |
+ | FEAT_MULTIPLE_SUBTITLE/多字幕           | enable/disable |
+ | FEAT_LATENCY/延迟                       | e.g. 4         |
+ | FEAT_ADMGT_SERVER                       | enable/disable |
+ | FEAT_UPLOAD_ADPL                        | enable/disable |
+ | SYS_CHANNEL_NUMBER/IPTV模式通道数       | e.g. 0         |
+ | SYS_MCHANNEL_NUMBER/DVB模式通道数       | e.g. 0         |
+ | SYS_INGEST_NUMBER/输入通道数            | e.g. 0         |
+ | SYS_NODE_NUMBER                         | e.g. 0         |
+ | SYS_SCHOL_NUMBER/字幕叠加通道数         | e.g. 0         |
+ | SYS_FPOL_NUMBER                         | e.g. 0         |
+ | SYS_AD_NUMBER                           | e.g. 0         |
+ | SYS_SCHAD_NUMBER/常规叠加通道数         | e.g. 0         |
+ | SYS_FPAD_NUMBER                         | e.g. 0         |
+ | SYS_FP12MAD_NUMBER                      | e.g. 0         |
+ | SYS_MANUALAD_NUMBER/手动插播通道数      | e.g. 0         |
+ | SYS_PROXY_SD_NUMBER/标清通道数          | e.g. 0         |
+ | SYS_PROXY_LD_NUMBER/低清通道数          | e.g. 0         |
+ | SYS_PROXY_HD_NUMBER/高清通道数          | e.g. 0         |
+ | CARD_INPUT_TYPE/采集卡输入类型          | e.g. 0         |
+ | CARD_OUTPUT_TYPE/采集卡输出类型         | e.g. 0         |
+ | CARD_INPUT_COUNT/采集卡输入数量         | e.g. 0         |
+ | CARD_OUTPUT_COUNT/采集卡输入数量        | e.g. 0         |
+ | SYS_INGEST_BACKUP_NUMBER/输入备份通道数 | e.g. 0         |
+** license包
+*** 功能
+    在第一次为客户机做授权时，将[[license文件][license文件]]与[[license文件解密程序][license文件解密程序]]拷贝到OMP系统上。并启动运行[[license文件解密程序][license文件解密程序]]来解密[[license文件][license文件]]
+*** 组成
+     [[license包][license包]]由[[license文件][license文件]]与[[license文件解密程序][license文件解密程序]]打包后，利用[[秘钥_{3}][秘钥_{3}]]加密所得。
+*** license包加解密
+    + 加密方式：[[AES-256-CTR][AES-256-CTR]]对称加密。
+    + [[秘钥_{3}][秘钥_{3}]]：见下节
+    + 解密方式：利用[[license包解密程序][license包解密程序]](下文详述)来解密[[license包][license包]]。
+*** 秘钥_{3}
+    + 秘钥采用：客户机硬件信息 + 随机数 组合。即DISKSN+MAC+CPU+随机数。
+    + 随机数由[[授权文件制作及客户信息管理平台][平台]]调用随机数生成函数产生。同时[[授权文件制作及客户信息管理平台][平台]]会将[[秘钥_{3}][秘钥_{3}]] _编译_ 到[[license包解密程序][license包解密程序]]当中。
+** 授权文件
+   + 授权文件由[[license包][license包]]与[[license包解密程序][license包解密程序]]打包而成。
+   + 当客户需要授权时，发该[[授权文件][授权文件]]给客户
+* license文件解密程序
+** 功能 
+   运行在OMP上，解密[[license文件][license文件]]。解密后得到[[OMP配置信息][OMP配置信息]]。并将配置信息保存在内存当中供OMP系统调用。
+** 生成
+   + [[license文件解密程序][license文件解密程序]]由[[授权文件制作及客户信息管理平台][平台]]_编译_ 生成。
+   + [[授权文件制作及客户信息管理平台][平台]]会将第一层加密[[OMP配置信息][OMP配置信息]]所生成的公钥，编译到[[license文件解密程序][程序]]当中。
+   + 将[[license文件解密程序][程序]]最终打包到[[license包][license包]]当中。
+** 解密过程及秘钥
+   + 第一层解密：运行该[[license文件解密程序][程序]]后，[[license文件解密程序][程序]]会读取所在客户机硬件信息，同时将其中DISKSN+MAC+CPU的组合，作为[[license文件][license文件]]的解密秘钥。这样就可以看出如果解密秘钥与[[秘钥_{2}][秘钥_{2}]]不匹配则无法解密[[license文件][license文件]]。这样就保证了，特定的[[license文件][license文件]]只能运行在特定的客户机上，防止出现穿货行为。
+   + 第二层解密：[[license文件解密程序][程序]]会利用内置的公钥秘钥来解密上一层生成的文件，最终生成OMP配置信息。
+* license包解密程序
+** 生成
+   + [[license包解密程序][程序]]由[[授权文件制作及客户信息管理平台][平台]] _编译_ 生成,并将最终打包到[[授权文件][授权文件]]当中。
+** 功能
+   + [[license包解密程序][程序]]运行在客户机上，并获取客户机的硬件信息。
+   + [[license包解密程序][程序]]的功能是用来解密[[license包][license包]]。
+   + 并启动[[license包][包]]中的[[license文件解密程序][license文件解密程序]]
+** 解密秘钥
+   由上文描述可以知道[[license包][license包]]的加密秘钥（[[秘钥_{3}][秘钥_{3}]]），是由客户机硬件信息 + 随机数组成。因此解密秘钥也必须是相同客户机上的硬件信息与相同的随机数。照此思路，我们在生成随机数时，将其编译到[[license包解密程序][程序]]当中。这样在发布时[[license包解密程序][程序]]就已经获得了一半的秘钥。当[[license包解密程序][程序]]运行在指定客户机时，获取到客户机硬件信息并与[[license包解密程序][程序]]内部保存的随机数进行组合。这样就与加密秘钥（[[秘钥_{3}][秘钥_{3}]]）一致，从而可以解密[[license包][license包]]。
+
+   同时可以看出，每次发布[[授权文件][授权文件]]时，都需要重新生成随机数，重新编译生成[[license包解密程序][程序]]。这样就保证了，即使是为同一台机器制作授权文件，每次用来加密[[license包][包]]及解密[[license包解密程序][程序]]所使用的秘钥都不相同。
+* 破坏场景及分析
+** 场景
+*** 场景一
+   + 在制作授权文件过程中，某生产人员盗取秘钥。于是擅自制作授权文件私下给客户进行授权而牟利。
+   - 分析：该人员通过对[[客户信息表][客户信息表]]的观察，可能会猜想到授权文件的秘钥来源为客户的硬件信息。但是由于随机数的存在，针对单一用户的反复的授权文件制作。都会得到不同的加密文件，其破解所需的重现方式无法实现。因此极大的提高了破解难度。
+*** 场景二
+   + 在OMP运行当中，客户篡改[[license文件][license文件]],对未授权的功能或时间进行授权。造成wellav损失。
+   - 分析：[[license文件][license文件]]在解密之前，会包含在[[license包][license包]]当中，由于随机数的原因，客户无法自制授权文件。而在解密之后，[[license文件][license文件]]内容将保持在内存当中，不会出现任何形式的明文[[license文件][文件]],因此无法获得其内容。
+*** 场景三
+   + 黑客破解解密程序，从了解秘钥机制。
+   - 分析：通过[[软件加壳][软件加壳]]的方式，隐藏重要接口函数库及程序。
+* 加密方式技术细节阐述
+** AES-256-CTR
+   OMP-License加密采用对称加密形式，对秘钥的保护就显得尤为重要。
+
+  要做到秘钥保护与加密解密效率就要选取适当的加密方式。
+  决定采用AES-256-CFB模式，秘钥以硬件信息的明文组合经过MD5转换后字节序。
+
+   原理：明文分组，通过AES算法进行加密，秘钥长度256位。采用CTR模式分组加密，如图所示，每一组明文都
+对应一个逐次累加的计数器，并通过对计数器进行加密来生成密钥流，也就是说，最终的密文分组是通过将计数器
+加密的到比特序列与明文分组进行XOR得到的。这样就可以在先得到密钥流后，进行明文分组的并行加密。从而提高
+加解密的速度。这样就适合对OMP-License授权包进行加密。
+
+   从图中也可以看出，当一组分组密文解密失败后不影响其他分组的解密过程。从而保证解密过程的流畅性。
+
+[[file: AES-256-CTR.png]]
+** 数字签名
+   数字签名，就是只有信息的发送者才能产生的别人无法伪造的一段数字串，这段数字串同时也是对信息的发送者
+发送信息真实性的一个有效证明。
+   我们借鉴数字签名的方式，使得OMP系统只能解密来自于wellav发出的[[license文件][license文件]]。从而保证在信息来源的可靠性与
+唯一性。让攻击者，即使知道了[[license文件][license文件]]的内容，也无法做出适合OMP系统的[[license文件][license文件]]
+** RSA
+   采用RSA非对称加密算法，生成一对秘钥对。用私钥加密，公钥解密来实现[[数字签名][数字签名]]的加密方式。
+* 软件加壳
+** 目的
+   防止黑客利用反编译的手段，破解软件解密的接口函数库。
+** 加壳方式
+   利用upx加壳工具，进行软件加壳。
+* 硬件校验
+** 作用  
+   防止用户私自更换硬件，如硬盘等。
+** 实现方式
+   + 在生成[[license文件][license文件]]时，将客户机硬件信息的字符串组合，利用MD5算法转换为固定长度的字符串。保存在[[license文件][license文件]]
+当中。
+   + 在OMP运行当中，OMP系统会定时获取机器硬件信息，并利用MD5算法转换为固定长度的字符串，与上述字符串进行
+比对。来校验硬件信息。
